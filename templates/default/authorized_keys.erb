@@ -1,0 +1,8 @@
+# Managed by Chef
+
+<% @people_keys.each_pair do |login, keys| %>
+# keys for <%= login %>
+<% keys.each do |key| %>
+<%= key %>
+<% end %>
+<% end %>
