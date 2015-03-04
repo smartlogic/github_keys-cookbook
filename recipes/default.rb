@@ -14,8 +14,11 @@ if attributes['create_user']
   end
 end
 
-if !::Dir.exists?("/home/#{attributes['username']}")
-  raise "#{attributes['username']} home dir not found"
+ruby_block "check for home dir" do
+  block do
+    raise "#{attributes['username']} home dir not found"
+  end
+  not_if { ::Dir.exists?("/home/#{attributes['username']}") }
 end
 
 directory "/home/#{attributes['username']}/.ssh" do
